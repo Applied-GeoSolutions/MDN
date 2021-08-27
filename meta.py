@@ -87,7 +87,7 @@ SENSOR_BANDS = {
 	'HYPER-nan' : list(range(400, 801)),
 	'LE07'      : [     479, 561, 661, 835],
 	'LT05'      : [     486, 571, 660, 839],
-	'LC80'      : [443, 482, 561, 655, 865],
+	'LC08'      : [443, 482, 561, 655, 865]
 }
 
 duplicates = {
@@ -133,8 +133,15 @@ def get_sensor_bands(sensor, args=None):
 
 def get_ancillary(sensor=None, anc_or_rhos=False):
 	common = ["fai", "spm_nechad", "gliotti"]
+	ocs = ["chl_oc2","chl_oc3"]
+	other_chl = ["ndci", "chl_re_gons", "chl_re_gons740", "chl_re_mishra", "chl_re_moses3b", "chl_re_moses3b740"]
+
 	if sensor == "LE07" or sensor == "LT05":
 		return common
+	elif sensor == "LC08":
+		return commmon + ocs
+	elif sensor == "MSI-rho":
+		return common + ocs + other_chl
 	elif anc_or_rhos:
 		return ANCILLARY
 	else:
