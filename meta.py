@@ -85,6 +85,9 @@ SENSOR_BANDS = {
 
 	'HYPER'     : list(range(400, 799)),
 	'HYPER-nan' : list(range(400, 801)),
+	'LE07'      : [     479, 561, 661, 835],
+	'LT05'      : [     486, 571, 660, 839],
+	'LC80'      : [443, 482, 561, 655, 865],
 }
 
 duplicates = {
@@ -127,6 +130,21 @@ def get_sensor_bands(sensor, args=None):
 	if len(bands) == 0:
 		bands = SENSOR_BANDS[sensor]
 	return np.sort(list(bands)) 	
+
+def get_ancillary(sensor=None, anc_or_rhos=False):
+	common = ["fai", "spm_nechad", "gliotti"]
+	if sensor == "LE07" or sensor == "LT05":
+		return common
+	elif anc_or_rhos:
+		return ANCILLARY
+	else:
+		return []
+
+def get_periodic(anc_or_rhos=False):
+	if anc_or_rhos:
+		return PERIODIC
+	else:
+		return []
 
 # --------------------------------------------------------------
 

@@ -8,7 +8,7 @@ import pickle as pkl
 import hashlib 
 
 from .model import MDN
-from .meta  import get_sensor_bands, SENSOR_LABEL, ANCILLARY, PERIODIC
+from .meta  import get_sensor_bands, get_ancillary, get_periodic, SENSOR_LABEL
 from .utils import get_labels, get_data, generate_config, using_feature, split_data, _load_datasets
 from .metrics import performance, mdsa, sspb, msa
 from .plot_utils import plot_scatter
@@ -158,7 +158,8 @@ def image_estimates(data, sensor=None, function=apply_model, rhos=False, anc=Fal
 	assert(len(data.shape) == 3), (
 		f'Expected data to have 3 dimensions (height, width, feature). Found shape: {data.shape}')
 	
-	expected_features = len(get_sensor_bands(sensor)) + (len(ANCILLARY)+len(PERIODIC) if anc or rhos else 0)
+	anc_or_rhos = anc or rhos
+	expected_features = len(get_sensor_bands(sensor)) + len(get_ancillary(sensor, anc_or_rhos)) + len(get_periodic(anc_or_rhos))
 	assert(data.shape[-1] == expected_features), (
 		f'Got {data.shape[-1]} features; expected {expected_features} features for sensor {sensor}')
 	

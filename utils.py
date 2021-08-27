@@ -1,4 +1,4 @@
-from .meta import get_sensor_bands, ANCILLARY, PERIODIC
+from .meta import get_sensor_bands, get_ancillary, PERIODIC
 from .parameters import update, hypers, flags
 from .__version__ import __version__
 
@@ -229,7 +229,7 @@ def get_tile_data(filenames, sensor, allow_neg=True, rhos=False, anc=False):
 	from netCDF4 import Dataset
 
 	filenames = np.atleast_1d(filenames) 
-	features  = ['rhos' if rhos else 'Rrs'] + (ANCILLARY if anc or rhos else [])
+	features  = ['rhos' if rhos else 'Rrs'] + get_ancillary(sensor, anc or rhos)
 	data      = {}
 	available = []
 
