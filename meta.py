@@ -22,6 +22,11 @@ SENSOR_LABEL = { # http://www.ioccg.org/sensors/seawifs.html
 	'MERIS'  : 'Envisat-1',
 	'HICO'   : 'HICO',
 	'HYPER'  : '1nm Hyperspectral',
+	'LE07'   : 'Landsat-7-AGS',
+	'LC08'   : 'Landsat-8-AGS',
+	'LT05'   : 'Landsat-5-AGS',
+	'LS'     : 'Landsat/Sentinel',
+	'L8S'    : 'Landsat-8/Sentinel'
 }
 
 def get_sensor_label(sensor):
@@ -87,7 +92,9 @@ SENSOR_BANDS = {
 	'HYPER-nan' : list(range(400, 801)),
 	'LE07'      : [     479, 561, 661, 835],
 	'LT05'      : [     486, 571, 660, 839],
-	'LC08'      : [443, 482, 561, 655, 865]
+	'LC08'      : [443, 482, 561, 655, 865],
+	'LS':       : [     486, 571, 660, 839],
+	'L8S'       : [443, 482, 561, 655, 865]
 }
 
 duplicates = {
