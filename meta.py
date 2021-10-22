@@ -146,7 +146,7 @@ def get_ancillary(sensor=None, anc_or_rhos=False):
 	if sensor == "LE07" or sensor == "LT05":
 		return common
 	elif sensor == "LC08":
-		return commmon + ocs
+		return common + ocs
 	elif sensor == "MSI-rho":
 		return common + ocs + other_chl
 	elif anc_or_rhos:
